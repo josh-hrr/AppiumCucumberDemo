@@ -1,12 +1,12 @@
 Feature: Login to Sauce Demo Mobile App
-	Scenario: Successful login with valid credentials
+	Scenario: Login with valid credentials
 		Given I am on the Sauce Demo Mobile App
 		When I go to the login page
 		And I enter username as "bob@example.com" and the passsword as "10203040"
 		And I click on the login button
 		Then I should see the inventory page display
 		
-	Scenario: Successful login with valid credentials
+	Scenario: Login with invalid credentials
 		Given I am on the Sauce Demo Mobile App
 		When I go to the login page
 		And I enter username as "invalid@example.com" and the passsword as "123"

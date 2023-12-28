@@ -1,19 +1,31 @@
 package TCSuite;
+import java.io.File;
 import java.net.URL;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities; 
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import io.appium.java_client.AppiumBy.ByAccessibilityId;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;  
 
-public class TCOne { 
+public class TCOneExperimental { 
 	public static final String APP = "/Users/Josue/Downloads/Android-MyDemoAppRN.1.3.0.build-244.apk";
 	public static final String APPIUM_SERVER_URL = "http://127.0.0.1:4723/wd/hub";
 	
 	
 	public static void main(String[] args) throws Exception {
+		
+		ExtentReports extentReports = new ExtentReports();
+		File file = new File("./ExtentReport.html");
+		ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(file);
+		extentReports.attachReporter(extentSparkReporter); 
+		
 		 
         DesiredCapabilities capabilities = new DesiredCapabilities();  
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
@@ -42,6 +54,9 @@ public class TCOne {
         WebElement login = driver.findElement(ByAccessibilityId.accessibilityId("Login button"));
         login.click();
         Thread.sleep(1000); 
+        ExtentTest testOne = extentReports.createTest("TCOne");
+        testOne.pass("Passed");  
+        extentReports.flush();
         driver.quit();  
 	}
 

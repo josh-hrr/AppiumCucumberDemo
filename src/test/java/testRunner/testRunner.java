@@ -5,14 +5,13 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
  
 	@RunWith(Cucumber.class)
-	@CucumberOptions(
+	@CucumberOptions(   
         features= {"src/test/java/Features/TCLoginMobile.feature"},
         glue="stepDefinitions",
-        plugin= {
-        		"pretty", "html:reports/myreport.html", 
-        		"json:reports/myreport.json"
-        		},    //Mandatory to capture failures
-        dryRun=true,
+        plugin= { 
+        		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+        		},     
+        dryRun=false,
         monochrome=true 
       )
 	public class testRunner { 
